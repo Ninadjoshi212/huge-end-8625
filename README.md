@@ -2,6 +2,13 @@
 The main aim of this system is to maintain and manage the detail information of the crime happened in  an  area under a particular police station. This software will be used by the police officials in the Police station.
 <br>
 <br>
+<h3>
+Different Section are provided depending on the user type:<br>
+1. In case of Rank as Commisssioner, will get different options<br>
+2. In case of Rank as Inspector, will get different options
+</h3>
+<br>
+<br>
 <p>
 The following information will be stored in this software<br>
 1. Date and Place of the Crime.<br>
