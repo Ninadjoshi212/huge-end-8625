@@ -20,7 +20,6 @@ public class DeleteCriminalNotMappedToCrime {
 
 		System.out.println(status);
 		
-		sc.close();
 	}
 
 }

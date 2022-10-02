@@ -27,6 +27,5 @@ public class DeleteCriminalMappedToCrime {
 			System.out.println(e.getMessage());
 
 		}
-		sc.close();
 	}
 }

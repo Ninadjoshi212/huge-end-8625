@@ -19,7 +19,6 @@ public class DeleteCrimeNotMappedToCriminal {
 		String status = od.deleteCrimeNotMappedToCriminal(id);
 		
 		System.out.println(status);
-		sc.close();
 	}
 
 }

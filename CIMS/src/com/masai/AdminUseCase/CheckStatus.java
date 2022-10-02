@@ -27,7 +27,6 @@ public class CheckStatus {
 			System.out.println(e.getMessage());
 
 		}
-		sc.close();
 	}
 
 }

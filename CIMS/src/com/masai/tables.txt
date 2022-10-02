@@ -1,0 +1,74 @@
+mysql> show tables;
++---------------------------------+
+| Tables_in_crime_info_mngmnt_sys |
++---------------------------------+
+| crime                           |
+| crime_by_criminal               |
+| criminal                        |
+| officer_station                 |
+| officers                        |
+| police_station                  |
++---------------------------------+
+6 rows in set (0.01 sec)
+
+mysql> select*from crime;
++----------+---------------+---------+----------------------------------------+------------+-----------------------+---------------+----------+
+| crime_id | Name_of_crime | victims | Detailed_des                           | date       | Police_station_name   | suspected     | status   |
++----------+---------------+---------+----------------------------------------+------------+-----------------------+---------------+----------+
+|        1 | rob           |       2 | asdjansmdnmansdmnanmsdasdmasd          | 1999-09-19 | andheri               | n1            | Solved   |
+|        2 | Robbery       |       2 | Stole One lakh Worth Gold From a store | 2022-09-05 | Girgao Police Station | Rohit Tamboli | unsolved |
+|        3 | Robbery       |       1 | stole 1lakh ruppes gold                | 2022-08-08 | andheri               | raju          | unsolved |
+|        4 | Robbery       |       3 | stolen necklace worth 6lakh ruppes     | 2022-01-08 | viman nagar           | babu bhai     | solved   |
++----------+---------------+---------+----------------------------------------+------------+-----------------------+---------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from criminal;
++-------------+---------------+-----------------+--------+------+---------------+---------+-------------+
+| criminal_id | name          | address         | gender | age  | identity_mark | crime   | area        |
++-------------+---------------+-----------------+--------+------+---------------+---------+-------------+
+|           2 | Rohit Tamboli | andheri, mumbai | male   |   29 | OneEye        | Robbery | Girgao      |
+|           3 | babu bhai     | pune            | male   |   29 | limps         | robbery | viman nagar |
++-------------+---------------+-----------------+--------+------+---------------+---------+-------------+
+2 rows in set (0.01 sec)
+
+mysql> select*from Crime_By_Criminal;
++----------+-------------+
+| crime_id | criminal_id |
++----------+-------------+
+|        2 |           2 |
+|        1 |           2 |
+|        3 |           3 |
++----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from officers;
++------------+---------------+------------------+------------------+--------------+---------------+
+| officer_id | officer_name  | officer_username | officer_password | officer_rank | DateOfJoining |
++------------+---------------+------------------+------------------+--------------+---------------+
+|          1 | Ninad         | nj212            | 123              | Commissioner | 2022-01-01    |
+|          2 | ChulbulPandey | chulbul          | 123              | Inspector    | 2022-09-01    |
+|          3 | Officer1      | ofc1             | ofc1             | Inspector    | 2022-08-08    |
++------------+---------------+------------------+------------------+--------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from police_station;
++------------+--------------------------+--------------------+
+| Station_Id | PoliceStation_Name       | PoliceStation_Area |
++------------+--------------------------+--------------------+
+|          1 | Girgao Police Station    | Girgaon            |
+|          2 | KarveNagar,PoliceStation | KarveNagar         |
+|          3 | Gaamdevi police station  | nariman point      |
+|          4 | andheri                  | andheri            |
+|          5 | firgao                   | Girgao             |
++------------+--------------------------+--------------------+
+5 rows in set (0.01 sec)
+
+mysql> select*from officer_station;
++------------+------------+
+| station_id | officer_id |
++------------+------------+
+|          1 |          1 |
+|          2 |          2 |
+|          3 |          3 |
++------------+------------+
+3 rows in set (0.00 sec)

@@ -23,7 +23,6 @@ public class DeleteCrimeMappedToCriminal {
 		} catch (CrimeException e) {
 			System.out.println(e.getMessage());
 		}
-		sc.close();
 	}
 
 }

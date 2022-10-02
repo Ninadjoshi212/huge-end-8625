@@ -25,9 +25,9 @@ public class StationCriminal {
 
 	@Override
 	public String toString() {
-		return "StationCriminal [Criminal_Id=" + Criminal_Id + ", Criminal_Name=" + Criminal_Name
-				+ ", Criminal_Address=" + Criminal_Address + ", PoliceStation_Name=" + PoliceStation_Name
-				+ ", PoliceStation_Area=" + PoliceStation_Area + "]";
+		return "\nCriminal_Id=" + Criminal_Id + "\nCriminal_Name=" + Criminal_Name
+				+ "\nCriminal_Address=" + Criminal_Address + "\nPoliceStation_Name=" + PoliceStation_Name
+				+ "\nPoliceStation_Area=" + PoliceStation_Area+"\n";
 	}
 
 	public int getCriminal_Id() {

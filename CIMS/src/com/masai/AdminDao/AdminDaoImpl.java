@@ -10,6 +10,7 @@ import java.util.List;
 import com.masai.Bean.Crime;
 import com.masai.Bean.PoliceOfficer;
 import com.masai.Bean.Police_Station;
+import com.masai.Bean.StationCrime;
 import com.masai.Bean.StationCriminal;
 import com.masai.Exceptions.CrimeException;
 import com.masai.Exceptions.OfficerException;
@@ -149,7 +150,7 @@ public class AdminDaoImpl implements AdminDao {
 		try (Connection conn = DBUtil.getconnection()) {
 
 			PreparedStatement ps = conn.prepareStatement(
-					"select c.Criminal_Id, c.name, c.address, c.age, c.crime, c.identity_mark, p.PoliceStation_Name, p.PoliceStation_Area from  Criminal c INNER JOIN Police_Station p INNER JOIN criminal_station pc ON c.criminal_Id = pc.criminal_Id AND p.station_Id = pc.station_Id AND p.PoliceStation_Area= ?");
+					"select c.Criminal_Id, c.name, c.address, c.age, c.crime, c.identity_mark, p.PoliceStation_Name, p.PoliceStation_Area from  Criminal c INNER JOIN Police_Station p ON c.area =  p.PoliceStation_Area AND p.PoliceStation_Area= ?");
 
 			ps.setString(1, PoliceStation_Area);
 
@@ -158,8 +159,8 @@ public class AdminDaoImpl implements AdminDao {
 			while (rs.next()) {
 
 				int id = rs.getInt("Criminal_Id");
-				String na = rs.getString("Criminal_Name");
-				String p1 = rs.getString("Criminal_Address");
+				String na = rs.getString("Name");
+				String p1 = rs.getString("Address");
 				String p2 = rs.getString("policeStation_Name");
 				String p3 = rs.getString("policeStation_Area");
 
@@ -179,6 +180,49 @@ public class AdminDaoImpl implements AdminDao {
 		return dtos;
 
 	}
+	
+	//############################# Get FIR By Station Area #############################
+		@Override
+		public List<StationCrime> getFIRByStationArea(String PoliceStation_Area)
+				throws Police_StationException {
+
+			List<StationCrime> scb = new ArrayList<>();
+
+			try (Connection conn = DBUtil.getconnection()) {
+
+				PreparedStatement ps = conn.prepareStatement(
+						"select c.Crime_id, c.Name_of_crime, c.victims, c.detailed_des, c.suspected, p.PoliceStation_Name, p.PoliceStation_Area from  crime c INNER JOIN Police_Station p ON c.Police_station_name =  p.PoliceStation_Area AND p.PoliceStation_Area= ?");
+
+				ps.setString(1, PoliceStation_Area);
+
+				ResultSet rs = ps.executeQuery();
+
+				while (rs.next()) {
+
+					int id = rs.getInt("crime_Id");
+					String na = rs.getString("Name_Of_Crime");
+					int p1 = rs.getInt("victims");
+					String p2 = rs.getString("detailed_des");
+					String p3 = rs.getString("suspected");
+					String p4 = rs.getString("policeStation_Name");
+					String p5 = rs.getString("policeStation_Area");
+
+					StationCrime sc = new StationCrime(id, na, p1, p2, p3,p4,p5);
+
+					scb.add(sc);
+
+				}
+
+			} catch (SQLException e) {
+				throw new Police_StationException(e.getMessage());
+			}
+
+			if (scb.isEmpty())
+				throw new Police_StationException("No Criminal found in that Police Staion ");
+
+			return scb;
+
+		}
 
 //############################# Detailed List Of Crime #############################
 	@Override

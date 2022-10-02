@@ -8,6 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.masai.AdminUseCase.DetailedListOfAllFIR;
+import com.masai.AdminUseCase.FirByStationName;
 import com.masai.AdminUseCase.OfficerStationMap;
 import com.masai.AdminUseCase.RegisterOfficer;
 import com.masai.AdminUseCase.RegisterPolice_Station;
@@ -16,7 +17,7 @@ import com.masai.AdminUseCase.CheckStatus;
 import com.masai.AdminUseCase.CountSolvedFIR;
 import com.masai.OfficerUseCases.SolvedCasesRecord;
 import com.masai.AdminUseCase.CountUnsolvedFIR;
-import com.masai.OfficerUseCases.CriminalsByStationName;
+import com.masai.AdminUseCase.CriminalsByStationName;
 import com.masai.AdminUseCase.CurrentMonthFIRRecord;
 import com.masai.OfficerUseCases.UnsolvedCasesRecord;
 import com.masai.OfficerUseCases.AllCriminalsRecord;
@@ -24,14 +25,14 @@ import com.masai.OfficerUseCases.AllFIRRecord;
 import com.masai.OfficerUseCases.CrimeCriminalMap;
 import com.masai.OfficerUseCases.CriminalById;
 import com.masai.OfficerUseCases.CriminalByName;
-import com.masai.OfficerUseCases.DeleteCrimeByCriminal;
+import com.masai.OfficerUseCases.DeleteCrimeMappedToCriminal;
+import com.masai.OfficerUseCases.DeleteCrimeNotMappedToCriminal;
 import com.masai.OfficerUseCases.DeleteCriminalMappedToCrime;
 import com.masai.OfficerUseCases.DeleteCriminalNotMappedToCrime;
 import com.masai.OfficerUseCases.FIRByCrimeType;
 import com.masai.OfficerUseCases.FIRById;
 import com.masai.OfficerUseCases.RegisterCriminal;
 import com.masai.OfficerUseCases.RegisterFIR;
-import com.masai.OfficerUseCases.SearchFIRByCriminal;
 import com.masai.utility.DBUtil;
 
 public class MainActivity {
@@ -123,14 +124,15 @@ public class MainActivity {
 							+ "2. Add Officers \n"
 							+ "3. Allot Officer To Station \n"
 							+ "4. Fetch Criminals By Station Area \n"
-							+ "5. Fetch Detailed List Of FIR \n"
-							+ "6. Count Number Of FIR Filed in Current Month \n"
-							+ "7. Count Number Of Solved FIR \n"
-							+ "8. Count Number Of Unsolved FIR \n"
-							+ "9. Fetch Details Of Solved FIR \n"
-							+ "10. Fetch Details Of Unsolved FIR \n"
-							+ "11. Check Status Of FIR"
-							+ "12. Logout");
+							+ "5. Fetch FIR By Station Area \n"
+							+ "6. Fetch Detailed List Of FIR \n"
+							+ "7. Count Number Of FIR Filed in Current Month \n"
+							+ "8. Count Number Of Solved FIR \n"
+							+ "9. Count Number Of Unsolved FIR \n"
+							+ "10. Fetch Details Of Solved FIR \n"
+							+ "11. Fetch Details Of Unsolved FIR \n"
+							+ "12. Check Status Of FIR \n"
+							+ "13. Logout");
 
 					System.out.println("\nPlease select an Option to continue...");
 
@@ -153,36 +155,40 @@ public class MainActivity {
 					case 4:
 						CriminalsByStationName.main(args);
 						break;
-
+						
 					case 5:
+						FirByStationName.main(args);
+						break;
+
+					case 6:
 						DetailedListOfAllFIR.main(args);
 						break;
 					
-					case 6:
+					case 7:
 						CurrentMonthFIRRecord.main(args);
 						break;
 					
-					case 7:
+					case 8:
 						CountSolvedFIR.main(args);
 						break;
 						
-					case 8:
+					case 9:
 						CountUnsolvedFIR.main(args);
 						break;
 
-					case 9:
+					case 10:
 						SolvedCasesRecord.main(args);
 						break;
 						
-					case 10:
+					case 11:
 						UnsolvedCasesRecord.main(args);
 						break;
 
-					case 11:
+					case 12:
 						CheckStatus.main(args);
 						break;
 
-					case 12:
+					case 13:
 						MainActivity.user_Logout();
 						break;
 
@@ -208,25 +214,26 @@ public class MainActivity {
 					System.out.println();
 
 					System.out.println(
-							"1. Add FIR \n"
+							"CRIME SECTION \n"
+							+ "1. Add FIR \n"
 							+ "2. Fetch All FIR Record \n"
 							+ "3. Map Criminal To Crime \n"
-							+ "4. Search FIR By Criminal Id \n"
-							+ "5. Delete FIR By Criminal Id \n"
-							+ "6. Delete FIR Not Mapped To Criminal \n"
-							+ "7. Delete FIR Mapped To Criminal \n"
-							+ "8. Search FIR By ID \n"
-							+ "9. Search FIR By Crime Type \n"
-							+ "10. Add Criminal \n"
-							+ "11. Fetch All Criminals Record \n"
-							+ "12. Delete Criminal Mapped To FIR \n"
-							+ "13. Delete Criminal Not Mapped To FIR \n"
-							+ "14. Search Criminal By ID \n"
-							+ "15. Search Criminal By Name \n"
-							+ "16. Solved FIR Records \n"
-							+ "17. UnSolved FIR Records \n"
-							+ "18. Update FIR Status"
-							+ "19. LogOut");
+							+ "4. Delete FIR Not Mapped To Criminal \n"
+							+ "5. Delete FIR Mapped To Criminal \n"
+							+ "6. Search FIR By ID \n"
+							+ "7. Search FIR By Crime Type \n"
+							+ "CRIMINAL SECTION \n"
+							+ "8. Add Criminal \n"
+							+ "9. Fetch All Criminals Record \n"
+							+ "10. Delete Criminal Mapped To FIR \n"
+							+ "11. Delete Criminal Not Mapped To FIR \n"
+							+ "12. Search Criminal By ID \n"
+							+ "13. Search Criminal By Name \n"
+							+ "RECORDS SECTION \n"
+							+ "14. Solved FIR Records \n"
+							+ "15. UnSolved FIR Records \n"
+							+ "16. Update FIR Status \n"
+							+ "17. LogOut");
 
 					System.out.println("\nPlease select an Option to continue...");
 
@@ -247,66 +254,58 @@ public class MainActivity {
 						break;
 
 					case 4:
-						SearchFIRByCriminal.main(args);
+						DeleteCrimeNotMappedToCriminal.main(args);
 						break;
 
 					case 5:
-						DeleteCrimeByCriminal.main(args);
+						DeleteCrimeMappedToCriminal.main(args);
 						break;
 
 					case 6:
-						DeleteCriminalMappedToCrime.main(args);
-						break;
-						
-					case 7:
-						DeleteCriminalNotMappedToCrime.main(args);
-						break;
-						
-					case 8:
 						FIRById.main(args);
 						break;
 
-					case 9:
+					case 7:
 						FIRByCrimeType.main(args);
 						break;
 					
-					case 10:
+					case 8:
 						RegisterCriminal.main(args);
 						break;
 					
-					case 11:
+					case 9:
 						AllCriminalsRecord.main(args);
 						break;
 					
-					case 12:
+					case 10:
 						DeleteCriminalMappedToCrime.main(args);
 						break;
 					
-					case 13:
+					case 11:
 						DeleteCriminalNotMappedToCrime.main(args);
 						break;
 					
-					case 14:
+					case 12:
 						CriminalById.main(args);
 						break;
 					
-					case 15:
+					case 13:
 						CriminalByName.main(args);
 						break;
 						
-					case 16:
+					case 14:
 						SolvedCasesRecord.main(args);
 						break;
 					
-					case 17:
+					case 15:
 						UnsolvedCasesRecord.main(args);
 						break;
 					
-					case 18:
+					case 16:
 						Update.main(args);
 						break;
 					
-					case 19:
+					case 17:
 						MainActivity.user_Logout();
 						break;
 
